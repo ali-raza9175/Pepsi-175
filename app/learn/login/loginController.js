@@ -1,0 +1,26 @@
+(function () {
+    angular.module('app.learn').controller('LoginContrller', loginController);
+    function loginController($state , UserFactory) {
+        var vm = this;
+        vm.submitted = false;
+        vm.user = {};
+
+        vm.submitForm = function(isValid) {
+console.log("form submit" + isValid);
+          vm.submitted = true;
+            // check to make sure the form is completely valid
+            if (isValid) {
+              var promise = UserFactory.getUser(vm.user.username , vm.user.password);
+              promise.then(function(response) {
+                console.log('Success: ' + response);
+                  $state.go("app.user.list");
+              }, function(reason) {
+                console.log('Failed: ' + reason);
+              });
+
+            }
+
+          };
+
+    }
+}());

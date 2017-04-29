@@ -1,0 +1,17 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>username</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+  <tbody  ng-repeat="user in vm.users track by $index">
+    <tr>
+      <td>{{user.name}}</td>
+      <td>{{user.username}}</td>
+      <td>{{user.phone}}</td>
+    </tr>
+
+  </tbody>
+</table>

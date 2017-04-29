@@ -1,0 +1,17 @@
+{
+  "name": "pepsi",
+  "version": "1.0.0",
+  "description": "Pepsi point of sell",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Ali Raza",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^1.6.6"
+  },
+  "dependencies": {
+    "nedb": "^1.8.0"
+  }
+}
