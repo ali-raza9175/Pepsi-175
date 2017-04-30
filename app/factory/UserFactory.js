@@ -8,12 +8,26 @@ mainApp.factory('UserFactory', function($q) {
    factory.saveUser = function(userInfo)
    {
      return $q(function(resolve, reject) {
-       users.findOne({ $and: [{ password: userInfo.password }, { username: userInfo.username }] }, function (err, docs) {
+       users.findOne({username: userInfo.username }, function (err, docs) {
             console.log("error" + err);
             console.log("doc" + docs);
              if(docs != undefined && docs != null )
               {
-                reject("user already exists");
+                if(docs.isActive === false)
+                {
+                users.update({ username: userInfo.username} , { $set: { isActive: true }} ,{upsert: true}, function (err, docs) {
+                    if(docs != undefined && docs != null )
+                     {
+                       resolve (docs);
+                     }
+                    else{
+                      reject(err);
+                         }
+                     });
+                  }
+                  else{
+                    reject("User already exists");
+                  }
               }
               else {
                 users.insert(userInfo, function(err, doc) {
@@ -34,7 +48,7 @@ mainApp.factory('UserFactory', function($q) {
    factory.getUser = function(username, password) {
 
      return $q(function(resolve, reject) {
-       users.findOne({$and:[{ password: password }, { username: username }]}, function (err, docs) {
+       users.findOne({$and:[{ password: password }, { username: username } , {isActive : true}]}, function (err, docs) {
            if(docs != undefined && docs != null )
             {
               resolve (docs);
@@ -46,10 +60,25 @@ mainApp.factory('UserFactory', function($q) {
        });
    }
 
-   factory.getAllUser = function() {
+   factory.deleteUSer = function(id) {
 
      return $q(function(resolve, reject) {
-       users.find({}, function (err, docs) {
+       users.update({_id : id} , { $set: { isActive: false }} ,{}, function (err, docs) {
+           if(docs != undefined && docs != null )
+            {
+              resolve (docs);
+            }
+           else{
+             reject("fail");
+                }
+            });
+       });
+   }
+
+   factory.getAllUser = function(loggedId) {
+
+     return $q(function(resolve, reject) {
+       users.find({$and:[{isActive : true} , {_id : {$ne : loggedId}}]}, function (err, docs) {
            if(docs != undefined && docs != null )
             {
               resolve (docs);

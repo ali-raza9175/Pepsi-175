@@ -1,9 +1,9 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
+      <a class="navbar-brand" href="#">Pepsi</a>
     </div>
-    <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav" ng-if="vm.user != undefined && vm.user != null">
       <li class="active"><a href="#">Home</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Inventory<span class="caret"></span></a>
         <ul class="dropdown-menu">
@@ -19,13 +19,22 @@
         </ul>
       </li>
 
-      <li><a href="#">User</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">User<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a ui-sref="app.learn.register">Add</a></li>
+          <li><a ui-sref="app.user.list">List</a></li>
+        </ul>
+      </li>
 
     </ul>
-    
-    <ul class="nav navbar-nav navbar-right">
+
+    <ul ng-if="vm.user == undefined || vm.user == null" class="nav navbar-nav navbar-right">
       <li><a ui-sref="app.learn.register"><spa class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       <li><a ui-sref="app.learn.login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+    <ul ng-if="vm.user != undefined && vm.user != null" class="nav navbar-nav navbar-right">
+        <li class="navbar-brand"> {{vm.user.name}}</li>
+      <li><a ng-click="vm.logOut()"><span class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
     </ul>
   </div>
 </nav>

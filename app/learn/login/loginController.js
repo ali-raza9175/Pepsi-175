@@ -1,6 +1,6 @@
 (function () {
     angular.module('app.learn').controller('LoginContrller', loginController);
-    function loginController($state , UserFactory) {
+    function loginController($rootScope, $scope, $state , UserFactory) {
         var vm = this;
         vm.submitted = false;
         vm.user = {};
@@ -12,6 +12,8 @@ console.log("form submit" + isValid);
             if (isValid) {
               var promise = UserFactory.getUser(vm.user.username , vm.user.password);
               promise.then(function(response) {
+                $rootScope.user = response;
+                $scope.$parent.authenticate();
                 console.log('Success: ' + response);
                   $state.go("app.user.list");
               }, function(reason) {

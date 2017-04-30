@@ -13,6 +13,7 @@
             if (isValid) {
               vm.user.role = vm.user.role.Name;
               vm.user.createdAt = new Date().toISOString().slice(0,10);
+              vm.user.isActive = true;
               var promise = UserFactory.saveUser(vm.user);
               promise.then(function(response) {
                 console.log('Success: ' + response);
