@@ -4,6 +4,8 @@
       <th>Name</th>
       <th>username</th>
       <th>Phone</th>
+      <th>Role</th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody  ng-repeat="user in vm.users track by $index">
@@ -11,6 +13,10 @@
       <td>{{user.name}}</td>
       <td>{{user.username}}</td>
       <td>{{user.phone}}</td>
+      <td>{{user.role}}</td>
+      <td> <button type="button" class="btn btn-primary btn-xs">Edit</button>
+          <button type="button" class="btn btn-danger btn-xs" ng-click="vm.removeUser(user._id)">Delete</button>
+      </td>
     </tr>
 
   </tbody>
