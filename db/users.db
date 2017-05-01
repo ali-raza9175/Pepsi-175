@@ -1,4 +1,10 @@
 {"name":"Asim","username":"asim.raza","password":"abc123","phone":"03333333175","role":"Admin","createdAt":"2017-04-30","isActive":true,"_id":"KR8SLQuFDzVqOeK0"}
-{"name":"Nawaz","username":"nawaz","password":"abc123","phone":"0323131","role":"Seller","createdAt":"2017-04-30","isActive":true,"_id":"OJZX8wDtQUYkKCrN"}
 {"name":"Ali Raza","username":"ali.raza","password":"abc123","phone":"03325555175","role":"Admin","createdAt":"2017-04-30","isActive":true,"_id":"pDn4DzbJLy0AG2iM"}
 {"$$indexCreated":{"fieldName":"username","unique":false,"sparse":false}}
+{"name":"nawaz","username":"nawaz","password":"abc123","phone":"0321123123","role":"Admin","createdAt":"2017-05-01","isActive":true,"_id":"LCdnylaANWjyE1ss"}
+{"_id":"LCdnylaANWjyE1ss"}
+{"name":"nawaz","username":"nawaz","password":"abc123","phone":"0321123123","role":"Seller","createdAt":"2017-05-01","isActive":true,"_id":"dzUP5iUHvNW3ywom"}
+{"_id":"pDn4DzbJLy0AG2iM"}
+{"name":"Ali Raza","username":"ali.raza","password":"abc123","phone":"03339999175","role":"Admin","createdAt":"2017-05-01","isActive":true,"_id":"smTXe2oXw6jBsaAP"}
+{"name":"nawaz","username":"nawaz","password":"abc123","phone":"0321123123","role":"Seller","createdAt":"2017-05-01","isActive":false,"_id":"dzUP5iUHvNW3ywom"}
+{"name":"nawaz","username":"nawaz","password":"abc123","phone":"0321123123","role":"Seller","createdAt":"2017-05-01","isActive":true,"_id":"dzUP5iUHvNW3ywom"}

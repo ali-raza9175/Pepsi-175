@@ -36,7 +36,7 @@ mainApp.factory('UserFactory', function($q) {
                         reject("fail");
                       }
                       else{
-                        resolve(doc.name);
+                        resolve(doc);
                       }
 
                     });
@@ -60,7 +60,37 @@ mainApp.factory('UserFactory', function($q) {
        });
    }
 
-   factory.deleteUSer = function(id) {
+   factory.getUserById = function(id) {
+
+     return $q(function(resolve, reject) {
+       users.findOne({ _id: id }, function (err, docs) {
+           if(docs != undefined && docs != null )
+            {
+              resolve (docs);
+            }
+           else{
+             reject(err);
+                }
+            });
+       });
+   }
+
+   factory.removeUser = function(id) {
+
+     return $q(function(resolve, reject) {
+       users.update({_id : id} , {}, function (err, docs) {
+           if(docs != undefined && docs != null )
+            {
+              resolve (docs);
+            }
+           else{
+             reject(err.message);
+                }
+            });
+       });
+   }
+
+   factory.deleteUser = function(id) {
 
      return $q(function(resolve, reject) {
        users.update({_id : id} , { $set: { isActive: false }} ,{}, function (err, docs) {
@@ -69,7 +99,7 @@ mainApp.factory('UserFactory', function($q) {
               resolve (docs);
             }
            else{
-             reject("fail");
+             reject(err.message);
                 }
             });
        });

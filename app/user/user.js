@@ -15,5 +15,10 @@
                  templateUrl: './user/list/list.html',
                  controller: "UserListContrller as vm"
                })
+               .state('app.user.edit' , {
+                 url:'/edit/:id',
+                 templateUrl: './user/edit/edit.html',
+                 controller: "EditUserContrller as vm"
+               })
              });
 }());
