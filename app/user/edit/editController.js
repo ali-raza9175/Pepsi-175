@@ -1,6 +1,6 @@
 (function () {
     angular.module('app.user').controller('EditUserContrller', registerController);
-    function registerController($scope, $stateParams, UserFactory) {
+    function registerController($scope, $state, $stateParams, UserFactory) {
         var vm = this;
         vm.submitted = false;
         vm.user = {};
@@ -34,6 +34,7 @@
                 vm.user = {};
                 console.log("user update to ");
                 console.log(response);
+                $state.go("app.user.list");
               }, function(response) {
                 console.log("user updation failed" + response);
               });

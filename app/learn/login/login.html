@@ -24,6 +24,7 @@
             <p ng-show="(loginForm.password.$dirty || vm.submitted) && loginForm.password.$error.minlength" class="help-block">Password is too short.</p>
         </div>
         <!-- SUBMIT BUTTON -->
-        <button type="submit" class="btn btn-primary button">Submit</button>
+        <button type="submit" class="btn btn-primary button">Login</button>
+        <button ng-if="vm.forgotPwd" ui-sref= "app.learn.forgotpwd" class="btn btn-danger btn-xs">Forgot password</button>
     </form>
 </div><!-- col-sm-8 -->

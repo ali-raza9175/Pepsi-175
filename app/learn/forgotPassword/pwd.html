@@ -1,0 +1,22 @@
+ <div class="col-sm-8 col-sm-offset-2">
+
+    <form name="pwdForm" ng-submit="vm.submitForm(pwdForm.$valid)" novalidate> <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+
+        <!-- USERNAME -->
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" name="username" class="form-control" ng-model="vm.user.username" ng-minlength="3"  required>
+            <p ng-show=" (pwdForm.username.$dirty || pwdForm.$submitted) && (pwdForm.username.$error.minlength || pwdForm.username.$error.required)" class="help-block">Username is too short.</p>
+        </div>
+
+        <div class="form-group">
+            <label>New password</label>
+            <input type="password" name="password" class="form-control" ng-model="vm.user.password" ng-minlength="3" required>
+            <p ng-show="(pwdForm.password.$dirty || pwdForm.$submitted) && (pwdForm.password.$error.minlength || pwdForm.password.$error.required)" class="help-block">Password is too short.</p>
+        </div>
+
+        <!-- SUBMIT BUTTON -->
+        <button type="submit"  class="btn btn-primary button">Update password</button>
+
+    </form>
+</div><!-- col-sm-8 -->

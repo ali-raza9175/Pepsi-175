@@ -1,6 +1,6 @@
 (function () {
     angular.module('app.learn').controller('RegisterController', registerController);
-    function registerController($scope, UserFactory) {
+    function registerController($scope, $state, UserFactory) {
         var vm = this;
         vm.submitted = false;
         vm.user = {};

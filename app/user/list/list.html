@@ -14,8 +14,14 @@
       <td>{{user.username}}</td>
       <td>{{user.phone}}</td>
       <td>{{user.role}}</td>
-      <td> <button type="button" class="btn btn-primary btn-xs" ui-sref = "app.user.edit({id: user._id })">Edit</button>
-          <button type="button" class="btn btn-danger btn-xs" ng-click="vm.removeUser(user)">Delete</button>
+      <td ng-if="vm.loggedInUser.role == 'Admin'">
+
+        <button type="button" class="btn btn-primary btn-xs" ui-sref = "app.user.edit({id: user._id })">Edit {{$rootScope.user.role}}</button>
+        <button type="button" class="btn btn-danger btn-xs" ng-click="vm.removeUser(user)">Delete</button>
+      </td>
+      <td ng-if="vm.loggedInUser.role != 'Admin' && vm.loggedInUser._id == user._id">
+        <button type="button" class="btn btn-primary btn-xs" ui-sref = "app.user.edit({id: user._id })">Edit</button>
+        <button type="button" class="btn btn-danger btn-xs" ng-click="vm.removeUser(user)">Delete</button>
       </td>
     </tr>
 

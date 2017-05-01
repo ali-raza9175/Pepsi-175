@@ -20,5 +20,10 @@
                      templateUrl: './learn/register/register.html',
                      controller: "RegisterController as vm"
                  })
+                 .state('app.learn.forgotpwd', {
+                       url: '/fpwd',
+                       templateUrl: './learn/forgotPassword/pwd.html',
+                       controller: "PasswordForgotController as vm"
+                   })
              });
 }());

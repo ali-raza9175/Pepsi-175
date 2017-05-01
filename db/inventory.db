@@ -1,5 +1,5 @@
-{"name":"1.5 Litter","price":"460","sprice":"76.5","createdAt":"2017-05-01","updatedAt":null,"isActive":true,"_id":"3brU91sMFiy5AFjU"}
-{"$$indexCreated":{"fieldName":"name","unique":false,"sparse":false}}
-{"name":"1.5 Litter","price":"460","sprice":"80","createdAt":"2017-05-01","updatedAt":null,"isActive":true,"_id":"3brU91sMFiy5AFjU"}
-{"name":"1.5 Litter","price":"460","sprice":"80","createdAt":"2017-05-01","updatedAt":null,"isActive":false,"_id":"3brU91sMFiy5AFjU"}
-{"name":"1.5 Litter","price":"460","sprice":"80","createdAt":"2017-05-01","updatedAt":null,"isActive":true,"_id":"3brU91sMFiy5AFjU"}
+{"name":"2.5 Litter","price":"630","sprice":"95","createdAt":"2017-05-01","updatedAt":null,"isActive":true,"_id":"5FUwYykam1RKC9Bz"}
+{"name":"1.5 Litter","price":"460","sprice":"75","createdAt":"2017-05-01","updatedAt":null,"isActive":true,"_id":"99acI2czwR2Muqew"}
+{"$$indexCreated":{"fieldName":"name","unique":true,"sparse":false}}
+{"name":"2.5 Litter","price":"630","sprice":"100","createdAt":"2017-05-01","updatedAt":"2017-05-01","isActive":true,"_id":"5FUwYykam1RKC9Bz"}
+{"name":"All Pure","price":"850","sprice":"120","createdAt":"2017-05-01","updatedAt":null,"isActive":true,"_id":"vwQrpjy2OVkaxT3N"}

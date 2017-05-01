@@ -20,7 +20,7 @@
           var deleteInv = $window.confirm('Are you absolutely sure you want to delete?');
 
           if (deleteInv) {
-            var promise = InventoryFactory.deleteInevntory(inventoryDel._id);
+            var promise = InventoryFactory.deleteInevntory(inventoryDel._id , $rootScope.user._id);
             promise.then(function(response) {
               console.log("success deleted" + response);
               if(response != null && response != undefined && response > 0)
