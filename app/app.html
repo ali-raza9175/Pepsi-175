@@ -5,10 +5,10 @@
     </div>
     <ul class="nav navbar-nav" ng-if="vm.user != undefined && vm.user != null">
       <li class="active"><a href="#">Home</a></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Inventory<span class="caret"></span></a>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" >Inventory<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Add</a></li>
-          <li><a href="#">List</a></li>
+          <li><a ui-sref="app.inventory.add">Add</a></li>
+          <li><a ui-sref="app.inventory.list">List</a></li>
         </ul>
       </li>
 

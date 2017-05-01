@@ -1,18 +1,19 @@
 var mainApp = angular.module('app');
-mainApp.factory('UserFactory', function($q) {
+mainApp.factory('InventoryFactory', function($q) {
    var factory = {};
    var Datastore = require('nedb');
-   var users = new Datastore({ filename: './db/users.db', autoload: true });
-   users.ensureIndex({fieldName : 'username'});
+   var inventory = new Datastore({ filename: './db/inventory.db', autoload: true });
+   inventory.ensureIndex({fieldName : 'name'});
 
-   factory.updateUser = function(userInfo)
+
+   factory.updateInventory = function(data)
    {
      return $q(function(resolve, reject) {
-       users.findOne({username: userInfo.username }, function (err, docs) {
+       inventory.findOne({_id: data._id }, function (err, docs) {
              if(docs != undefined && docs != null )
               {
-                users.update({ _id: userInfo._id} , { $set: { "isActive": true , name : userInfo.name , username : userInfo.username,
-                            role : userInfo.role , phone : userInfo.phone
+                inventory.update({ _id: data._id} , { $set: { "isActive": true , name : data.name , price : data.price,
+                             sprice : data.sprice
                             }} ,
                             {upsert: true},
                             function (err, docs)
@@ -33,18 +34,20 @@ mainApp.factory('UserFactory', function($q) {
       });
    }
 
-
-   factory.saveUser = function(userInfo)
+   factory.saveInventory = function(data)
    {
      return $q(function(resolve, reject) {
-       users.findOne({username: userInfo.username }, function (err, docs) {
-            console.log("error" + err);
-            console.log("doc" + docs);
+
+       var regex = new RegExp( data.name, 'g' );
+       inventory.findOne({name:  { $regex: regex } }, function (err, docs) {
+            console.log("regex" +  regex);
+            console.log("doc" + docs.name);
              if(docs != undefined && docs != null )
               {
+
                 if(docs.isActive === false)
                 {
-                users.update({ username: userInfo.username} , { $set: { isActive: true }} ,{upsert: true}, function (err, docs) {
+                inventory.update({ name: docs.name} , { $set: { isActive: true }} ,{upsert: true}, function (err, docs) {
                     if(docs != undefined && docs != null )
                      {
                        resolve (docs);
@@ -59,7 +62,7 @@ mainApp.factory('UserFactory', function($q) {
                   }
               }
               else {
-                users.insert(userInfo, function(err, doc) {
+                inventory.insert(data, function(err, doc) {
                       if(err )
                       {
                         reject("fail");
@@ -74,25 +77,10 @@ mainApp.factory('UserFactory', function($q) {
       });
    }
 
-   factory.getUser = function(username, password) {
+   factory.getInventoryById = function(id) {
 
      return $q(function(resolve, reject) {
-       users.findOne({$and:[{ password: password }, { username: username } , {isActive : true}]}, function (err, docs) {
-           if(docs != undefined && docs != null )
-            {
-              resolve (docs);
-            }
-           else{
-             reject("fail");
-                }
-            });
-       });
-   }
-
-   factory.getUserById = function(id) {
-
-     return $q(function(resolve, reject) {
-       users.findOne({ _id: id }, function (err, docs) {
+       inventory.findOne({ _id: id }, function (err, docs) {
            if(docs != undefined && docs != null )
             {
               resolve (docs);
@@ -104,10 +92,10 @@ mainApp.factory('UserFactory', function($q) {
        });
    }
 
-   factory.removeUser = function(id) {
+   factory.removeInventory = function(id) {
 
      return $q(function(resolve, reject) {
-       users.update({_id : id} , {}, function (err, docs) {
+       inventory.update({_id : id} , {}, function (err, docs) {
            if(docs != undefined && docs != null )
             {
               resolve (docs);
@@ -119,10 +107,10 @@ mainApp.factory('UserFactory', function($q) {
        });
    }
 
-   factory.deleteUser = function(id) {
+   factory.deleteInevntory = function(id) {
 
      return $q(function(resolve, reject) {
-       users.update({_id : id} , { $set: { isActive: false }} ,{}, function (err, docs) {
+       inventory.update({_id : id} , { $set: { isActive: false }} ,{}, function (err, docs) {
            if(docs != undefined && docs != null )
             {
               resolve (docs);
@@ -134,10 +122,10 @@ mainApp.factory('UserFactory', function($q) {
        });
    }
 
-   factory.getAllUser = function(loggedId) {
+   factory.getAllInventory = function(loggedId) {
 
      return $q(function(resolve, reject) {
-       users.find({$and:[{isActive : true} , {_id : {$ne : loggedId}}]}, function (err, docs) {
+       inventory.find({isActive : true }, function (err, docs) {
            if(docs != undefined && docs != null )
             {
               resolve (docs);

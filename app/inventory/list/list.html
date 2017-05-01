@@ -1,0 +1,21 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th> Piice </th>
+      <th>Single piece price</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody  ng-repeat="inv in vm.inventory track by $index">
+    <tr>
+      <td>{{inv.name}}</td>
+      <td>{{inv.price}}</td>
+      <td>{{inv.sprice}}</td>
+      <td> <button type="button" class="btn btn-primary btn-xs" ui-sref = "app.inventory.edit({id: inv._id })">Edit</button>
+          <button type="button" class="btn btn-danger btn-xs" ng-click="vm.removeInventory(inv)">Delete</button>
+      </td>
+    </tr>
+
+  </tbody>
+</table>

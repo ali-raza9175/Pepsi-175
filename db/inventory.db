@@ -1,0 +1,5 @@
+{"name":"1.5 Litter","price":"460","sprice":"76.5","createdAt":"2017-05-01","updatedAt":null,"isActive":true,"_id":"3brU91sMFiy5AFjU"}
+{"$$indexCreated":{"fieldName":"name","unique":false,"sparse":false}}
+{"name":"1.5 Litter","price":"460","sprice":"80","createdAt":"2017-05-01","updatedAt":null,"isActive":true,"_id":"3brU91sMFiy5AFjU"}
+{"name":"1.5 Litter","price":"460","sprice":"80","createdAt":"2017-05-01","updatedAt":null,"isActive":false,"_id":"3brU91sMFiy5AFjU"}
+{"name":"1.5 Litter","price":"460","sprice":"80","createdAt":"2017-05-01","updatedAt":null,"isActive":true,"_id":"3brU91sMFiy5AFjU"}
