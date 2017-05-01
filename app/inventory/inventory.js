@@ -6,7 +6,7 @@
         $stateProvider
              .state('app.inventory', {
                   abstract : true,
-                   url: '/invemtory',
+                   url: '/inventory',
                    templateUrl: './inventory/inventory.html',
                    controller: "InventoryContrller as vm"
                })
