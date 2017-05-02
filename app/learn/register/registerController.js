@@ -4,6 +4,8 @@
         var vm = this;
         vm.submitted = false;
         vm.user = {};
+        vm.error = undefined;
+        vm.success = undefined;
         vm.roles = [{Name:"Admin", value:"Admin"},{Name:"Seller", value:"Seller"}];
 
 
@@ -18,12 +20,16 @@
               var promise = UserFactory.saveUser(vm.user);
               promise.then(function(response) {
                 console.log('Success: ' + response);
+                vm.success = "A new user has been added";
+                vm.error - undefined;
               }, function(reason) {
                 console.log('Failed: ' + reason);
+                vm.success = undefined;
+                vm.error = "Something went wrong while adding user";
               });
 
               $scope.registerForm.$setPristine();
-                               $scope.registerForm.$setUntouched();
+              $scope.registerForm.$setUntouched();
               vm.user = {};
             }
 

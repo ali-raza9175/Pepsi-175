@@ -1,3 +1,5 @@
+<ng-include src="'./shared/error.html'"></ng-include>
+<ng-include src="'./shared/success.html'"></ng-include>
  <div class="col-sm-8 col-sm-offset-2">
 
     <form name="registerForm" ng-submit="vm.submitForm(registerForm.$valid)" novalidate> <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
@@ -25,7 +27,8 @@
         <!-- EMAIL -->
         <div class="form-group">
             <label>Phone Number</label>
-            <input type="text" name="phone" class="form-control" ng-model="vm.user.phone" required="">
+            <input type="text" ng-pattern="/^[0-9]*$/" name="phone" class="form-control" ng-model="vm.user.phone" required="">
+            <p ng-show="registerForm.phone.$error.pattern">Not a valid number!</p>
             <p ng-show="(registerForm.phone.$dirty || registerForm.$submitted) && registerForm.phone.$error.required" class="help-block">Phone number is required.</p>
         </div>
 
