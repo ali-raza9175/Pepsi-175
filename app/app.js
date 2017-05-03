@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module('app', ['ui.router', 'app.user' ,'app.learn' ,'app.inventory', '720kb.datepicker' , 'ui.select', 'ngSanitize'])
+    var app = angular.module('app', ['ui.router', 'app.user' ,'app.learn' ,'app.inventory' , 'app.stock', '720kb.datepicker' , 'ui.select', 'ngSanitize'])
 
     app.config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/app');

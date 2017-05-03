@@ -123,7 +123,7 @@
          });
      }
 
-     factory.getAllInventory = function(loggedId) {
+     factory.getAllInventory = function() {
 
        return $q(function(resolve, reject) {
          inventory.find({isActive : true }, function (err, docs) {
