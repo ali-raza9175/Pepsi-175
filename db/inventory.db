@@ -2,3 +2,5 @@
 {"name":"1.5 Litter","price":"460","sprice":"75","createdAt":"2017-05-01","updatedAt":null,"isActive":true,"_id":"99acI2czwR2Muqew"}
 {"name":"All Pure","price":"850","sprice":"120","createdAt":"2017-05-01","updatedAt":null,"isActive":true,"_id":"vwQrpjy2OVkaxT3N"}
 {"$$indexCreated":{"fieldName":"name","unique":true,"sparse":false}}
+{"name":"Shezan juic","price":"330","sprice":"20","createdAt":"2017-05-04","updatedAt":null,"isActive":true,"_id":"JTWyrktkNeJwC7Oj"}
+{"name":"Shezan juice","price":"330","sprice":"20","createdAt":"2017-05-04","updatedAt":"2017-05-04","isActive":true,"_id":"JTWyrktkNeJwC7Oj"}

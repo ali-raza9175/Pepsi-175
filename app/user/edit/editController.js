@@ -23,7 +23,8 @@
            vm.submitted = true;
             // check to make sure the form is completely valid
             if (isValid) {
-              vm.user.updatedAt = new Date().toISOString().slice(0,10);
+              var date = new Date();
+              vm.user.updatedAt=  new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(0,10);
               vm.user.isActive = true;
               console.log(vm.user);
               var promise = UserFactory.updateUser(vm.user);

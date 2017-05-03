@@ -8,7 +8,9 @@
       activate();
 
       function activate(){
-      vm.inventory.date = new Date().toISOString().slice(0,10);
+      var date = new Date();
+
+      vm.inventory.date =  new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(0,10);
         var promise = InventoryFactory.getAllInventory();
 
         promise.then(function (response){

@@ -8,7 +8,9 @@
            vm.submitted = true;
             // check to make sure the form is completely valid
             if (isValid) {
-              vm.inventory.createdAt = new Date().toISOString().slice(0,10);
+              var date = new Date();
+              vm.inventory.createdAt=  new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(0,10);
+
               vm.inventory.updatedAt = null;
               vm.inventory.isActive = true;
               var promise = InventoryFactory.saveInventory(vm.inventory);
