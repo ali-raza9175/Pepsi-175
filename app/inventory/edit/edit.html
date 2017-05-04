@@ -2,26 +2,7 @@
 
    <form name="inventoryForm" ng-submit="vm.submitForm(inventoryForm.$valid)" novalidate> <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
 
-       <!-- NAME -->
-       <div class="form-group">
-           <label>Name</label>
-           <input type="text" name="name" class="form-control" ng-model="vm.inventory.name" required>
-           <p ng-show="(inventoryForm.name.$dirty || inventoryForm.$submitted) && inventoryForm.name.$error.required" class="help-block">You name is required.</p>
-       </div>
-
-       <!-- NAME -->
-       <div class="form-group">
-           <label>Pack price</label>
-           <input type="text" name="price" class="form-control" ng-model="vm.inventory.price" required>
-           <p ng-show="(inventoryForm.price.$dirty || inventoryForm.$submitted) && inventoryForm.price.$error.required" class="help-block">price is required.</p>
-       </div>
-
-       <!-- NAME -->
-       <div class="form-group">
-           <label>Single pack price</label>
-           <input type="text" name="sprice" class="form-control" ng-model="vm.inventory.sprice" required>
-           <p ng-show="(inventoryForm.sprice.$dirty || inventoryForm.$submitted) && inventoryForm.sprice.$error.required" class="help-block">single piece is required.</p>
-       </div>
+     <ng-include src="'./inventory/shared/_form.html'"></ng-include>
 
        <!-- SUBMIT BUTTON -->
        <button type="submit"  class="btn btn-primary button">Update</button>

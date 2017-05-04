@@ -4,6 +4,8 @@
         var vm = this;
         vm.inventory = [];
         vm.removeInventory = removeUser;
+        vm.getQuantity = getQuantity;
+        vm.getIndQuantity = getIndQuantity;
         activate();
 
         function activate(){
@@ -13,6 +15,22 @@
           }, function(reason) {
             console.log('Failed: ' + reason);
           });
+        }
+
+        function getQuantity(inventory)
+        {
+          if(inventory != undefined && inventory != null && inventory != "")
+          {
+            return Math.floor(inventory.quantity / inventory.units);
+          }
+          return 0;
+        }
+        function getIndQuantity(inventory){
+          if(inventory != undefined && inventory != null && inventory != "")
+          {
+            return inventory.quantity % inventory.units;
+          }
+          return 0;
         }
 
         function removeUser (inventoryDel)

@@ -1,6 +1,3 @@
-{"name":"2.5 Litter","price":"630","sprice":"100","createdAt":"2017-05-01","updatedAt":"2017-05-01","isActive":true,"_id":"5FUwYykam1RKC9Bz"}
-{"name":"1.5 Litter","price":"460","sprice":"75","createdAt":"2017-05-01","updatedAt":null,"isActive":true,"_id":"99acI2czwR2Muqew"}
-{"name":"All Pure","price":"850","sprice":"120","createdAt":"2017-05-01","updatedAt":null,"isActive":true,"_id":"vwQrpjy2OVkaxT3N"}
+{"name":"1.5 Litter","price":"460","units":6,"quantity":302,"uquantity":2,"createdAt":"2017-05-05","createdBy":{"name":"Asim Raza","username":"asim.raza","password":"abc123","phone":"03333333175","role":"Admin","createdAt":"2017-05-01","updatedAt":"2017-05-01","isActive":true,"_id":"5vGTVomP1nOncCVe"},"updatedAt":null,"isActive":true,"unit_price":76,"_id":"v895zlX30TJ9AgrG"}
 {"$$indexCreated":{"fieldName":"name","unique":true,"sparse":false}}
-{"name":"Shezan juic","price":"330","sprice":"20","createdAt":"2017-05-04","updatedAt":null,"isActive":true,"_id":"JTWyrktkNeJwC7Oj"}
-{"name":"Shezan juice","price":"330","sprice":"20","createdAt":"2017-05-04","updatedAt":"2017-05-04","isActive":true,"_id":"JTWyrktkNeJwC7Oj"}
+{"name":"2.5 Litter","price":"620","units":6,"quantity":302,"uquantity":2,"createdAt":"2017-05-05","createdBy":{"name":"Asim Raza","username":"asim.raza","password":"abc123","phone":"03333333175","role":"Admin","createdAt":"2017-05-01","updatedAt":"2017-05-01","isActive":true,"_id":"5vGTVomP1nOncCVe"},"updatedAt":null,"isActive":true,"unit_price":103,"_id":"2Rhn5FDuQtakDoim"}

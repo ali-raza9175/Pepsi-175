@@ -25,5 +25,10 @@
                  templateUrl: './inventory/edit/edit.html',
                  controller: "EditInventoryContrller as vm"
                })
+               .state('app.inventory.stock' , {
+                 url:'/stock/:id',
+                 templateUrl: './inventory/stock/stock.html',
+                 controller: "StockContrller as vm"
+               })
              });
 }());

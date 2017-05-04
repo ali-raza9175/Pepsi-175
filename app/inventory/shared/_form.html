@@ -1,0 +1,21 @@
+<!-- NAME -->
+<div class="form-group">
+    <label>Name</label>
+    <input type="text" name="name" class="form-control" ng-model="vm.inventory.name" required>
+    <p ng-show="(inventoryForm.name.$dirty || inventoryForm.$submitted) && inventoryForm.name.$error.required" class="help-block">You name is required.</p>
+</div>
+
+
+<div class="form-group">
+    <label>Pack price</label>
+    <input type="text" name="price" class="form-control" ng-model="vm.inventory.price" required>
+    <p ng-show="(inventoryForm.price.$dirty || inventoryForm.$submitted) && inventoryForm.price.$error.required" class="help-block">price is required.</p>
+</div>
+
+
+<div class="form-group">
+    <label>Units in pack</label>
+    <input type="text" name="units" ng-pattern="/^[0-9]*$/"  class="form-control" ng-model="vm.inventory.units" required>
+    <p ng-show="inventoryForm.units.$error.pattern">Not a valid number!</p>
+    <p ng-show="(inventoryForm.sprice.$dirty || inventoryForm.$submitted) && inventoryForm.sprice.$error.required" class="help-block">single piece is required.</p>
+</div>

@@ -2,8 +2,10 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th> Price </th>
-      <th>Single piece price</th>
+      <th>Price </th>
+      <th>Units in pack</th>
+      <th>Avaibale Packs</th>
+      <th>Avaibale units</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -11,9 +13,11 @@
     <tr>
       <td>{{inv.name}}</td>
       <td>{{inv.price}}</td>
-      <td>{{inv.sprice}}</td>
+      <td>{{inv.units}}</td>
+      <td>{{vm.getQuantity(inv)}} </td>
+      <td> {{vm.getIndQuantity(inv)}} </td>
       <td> <button type="button" class="btn btn-primary btn-xs" ui-sref = "app.inventory.edit({id: inv._id })">Edit</button>
-          <button type="button" class="btn btn-danger btn-xs" ng-click="vm.removeInventory(inv)">Delete</button>
+          <button type="button" class="btn btn-primary btn-xs" ui-sref="app.inventory.stock({id: inv._id })">Stock update</button>
       </td>
     </tr>
 

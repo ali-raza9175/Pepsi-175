@@ -14,7 +14,7 @@
                         if(docs != undefined && docs != null )
                          {
                            inventory.update({ _id: data._id} , { $set: { "isActive": true , name : data.name , price : data.price,
-                                        sprice : data.sprice , updatedAt : data.updatedAt
+                                        unit_price : data.unit_price , updatedAt : data.updatedAt
                                        }} ,
                                        {upsert: true},
                                        function (err, docs)
@@ -59,7 +59,7 @@
                        });
                     }
                     else{
-                      reject("User already exists");
+                      reject("Inventory name already exists");
                     }
                 }
                 else {
