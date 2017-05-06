@@ -1,10 +1,11 @@
   (function () {
       angular.module('app.user').controller('UserListContrller', userController);
-      function userController($rootScope, $scope , $window, UserFactory) {
+      function userController($rootScope, $scope , $window, UserFactory , ConstantFactory) {
         console.log("user list");
           var vm = this;
           vm.users = [];
           vm.loggedInUser = null;
+          vm.admin = ConstantFactory.admin
           vm.removeUser = removeUser;
           activate();
           function activate(){

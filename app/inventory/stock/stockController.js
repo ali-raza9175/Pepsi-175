@@ -25,10 +25,12 @@
               vm.inventory.updatedAt=  new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(0,10);
               vm.inventory.isActive = true;
               vm.inventory.updatedBy = $rootScope.user;
-              vm.inventoryUpdate.quantity = parseInt(vm.inventoryUpdate.quantity);
-              vm.inventory.units = parseInt(vm.inventory.units);
-              vm.inventoryUpdate.uquantity = parseInt(vm.inventoryUpdate.uquantity);
-              vm.inventory.quantity =  parseInt(vm.inventory.quantity) + (vm.inventoryUpdate.quantity * vm.inventory.units + vm.inventoryUpdate.uquantity)
+              vm.inventoryUpdate.quantity = vm.inventoryUpdate.quantity;
+              vm.inventory.units = vm.inventory.units;
+              vm.inventoryUpdate.uquantity =vm.inventoryUpdate.uquantity;
+              vm.inventory.quantity =  vm.inventory.quantity + (vm.inventoryUpdate.quantity * vm.inventory.units + vm.inventoryUpdate.uquantity);
+
+              update_stock(vm.inventory);
 
           };
 
@@ -38,13 +40,13 @@
                 vm.inventory.updatedAt=  new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(0,10);
                 vm.inventory.isActive = true;
                 vm.inventory.updatedBy = $rootScope.user;
-                vm.inventoryUpdate.quantity = parseInt(vm.inventoryUpdate.quantity);
-                vm.inventory.units = parseInt(vm.inventory.units);
-                vm.inventoryUpdate.uquantity = parseInt(vm.inventoryUpdate.uquantity);
-                vm.inventory.quantity =  parseInt(vm.inventory.quantity) - (vm.inventoryUpdate.quantity * vm.inventory.units + vm.inventoryUpdate.uquantity)
+                vm.inventoryUpdate.quantity = vm.inventoryUpdate.quantity;
+                vm.inventory.units = vm.inventory.units;
+                vm.inventoryUpdate.uquantity = vm.inventoryUpdate.uquantity;
+                vm.inventory.quantity =  vm.inventory.quantity - (vm.inventoryUpdate.quantity * vm.inventory.units + vm.inventoryUpdate.uquantity)
                 if(vm.inventory.quantity > 0)
                 {
-
+                    update_stock(vm.inventory);
                 }
                 else{
 
@@ -52,6 +54,17 @@
                 }
 
             };
+
+            function update_stock (inventory) {
+
+              var promise = InventoryFactory.updatStock(inventory);
+              promise.then(function(response) {
+                $state.go('app.inventory.list');
+              }, function(reason) {
+                console.log('Failed: ' + reason);
+              });
+
+            }
 
     }
 }());

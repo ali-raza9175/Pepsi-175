@@ -1,5 +1,5 @@
   var mainApp = angular.module('app');
-  mainApp.factory('UserFactory', function($q) {
+  mainApp.factory('UserFactory', function($q , ConstantFactory) {
   var factory = {};
   var Datastore = require('nedb');
   var users = new Datastore({ filename: './db/users.db', autoload: true });
@@ -174,6 +174,20 @@
           }
       });
   });
+  }
+
+  factory.getSellers = function (){
+    return $q (function (resolve , reject){
+      users.find({$and:[{isActive : true} , {role : ConstantFactory.seller}]}, function (err, docs){
+        if(docs != undefined && docs != null )
+         {
+           resolve (docs);
+         }
+        else{
+          reject("fail");
+         }
+      });
+    });
   }
 
   return factory;

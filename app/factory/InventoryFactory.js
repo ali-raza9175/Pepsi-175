@@ -138,5 +138,25 @@
          });
      }
 
+     factory.updatStock = function (data){
+       return $q(function(resolve, reject) {
+
+       inventory.update({ _id: data._id} , { $set: { "isActive": true , quantity : data.quantity ,
+                    updatedBy : data.updatedBy , updatedAt : data.updatedAt
+                   }} ,
+                   {upsert: true},
+                   function (err, docs)
+                   {
+                     if(docs != undefined && docs != null )
+                     {
+                       resolve (docs);
+                     }
+                     else{
+                       reject(err);
+                     }
+                   })
+
+                 });
+     };
      return factory;
   });

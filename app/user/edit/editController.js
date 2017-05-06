@@ -1,10 +1,10 @@
 (function () {
     angular.module('app.user').controller('EditUserContrller', registerController);
-    function registerController($scope, $state, $stateParams, UserFactory) {
+    function registerController($scope, $state, $stateParams, UserFactory , ConstantFactory) {
         var vm = this;
         vm.submitted = false;
         vm.user = {};
-        vm.roles = ["Admin","Seller"];
+        vm.roles = [ConstantFactory.admin,ConstantFactory.seller];
 
         activate();
 

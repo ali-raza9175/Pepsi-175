@@ -12,9 +12,9 @@
           </ul>
         </li>
 
-        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Stock<span class="caret"></span></a>
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Sale<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a ui-sref="app.stock.add">Add</a></li>
+            <li><a ui-sref="app.sale.add">Add Sale</a></li>
           </ul>
         </li>
 
@@ -33,7 +33,7 @@
       </ul>
       <ul ng-if="vm.user != undefined && vm.user != null" class="nav navbar-nav navbar-right">
           <li class="navbar-brand"> {{vm.user.name}}</li>
-        <li><a ng-click="$scope.logOut()"><span class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
+        <li><a ng-click="vm.logOut()"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
       </ul>
     </div>
   </nav>

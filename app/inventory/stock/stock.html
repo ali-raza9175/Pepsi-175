@@ -8,17 +8,14 @@
 <div class="row">
   <div class="col-sm-12 pull-left " ng-form name="quantityForm">
     <span> Packs</span>
-    <input type="text" name="quantity" ng-pattern="/^[0-9]*$/"  class="form-control" ng-model="vm.inventoryUpdate.quantity" required>
-    <p ng-show="quantityForm.quantity.$error.pattern">Not a valid number!</p>
+    <input type="number" name="quantity" ng-pattern="/^[0-9]*$/"  class="form-control" ng-model="vm.inventoryUpdate.quantity" required>
   </div>
 </div>
 
 <div class="row">
   <div class="col-sm-12 pull-left " ng-form name="quantityForm">
     <span> Units</span>
-    <input type="text" name="uquantity" ng-pattern="/^[0-9]*$/"  class="form-control" ng-model="vm.inventoryUpdate.uquantity" required>
-    <p ng-show="quantityForm.uquantity.$error.pattern">Not a valid number!</p>
-
+    <input type="number" name="uquantity"  class="form-control" ng-model="vm.inventoryUpdate.uquantity" required>
   </div>
 </div>
 

@@ -8,7 +8,7 @@
         vm.btnClicked = btnClicked;
         vm.logOut = logOut;
         $scope.authenticate = authenticate;
-        $scope.logOut = logOut;
+        vm.logOut = logOut;
 
         activate();
 

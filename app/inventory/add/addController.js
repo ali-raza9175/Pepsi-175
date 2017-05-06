@@ -15,6 +15,7 @@
               vm.inventory.units = parseInt(vm.inventory.units);
               vm.inventory.uquantity = parseInt(vm.inventory.uquantity);
               vm.inventory.updatedAt = null;
+              vm.inventory.updatedBy = null;
               vm.inventory.isActive = true;
               vm.inventory.quantity = vm.inventory.quantity * vm.inventory.units + vm.inventory.uquantity;
               vm.inventory.unit_price = Math.floor(vm.inventory.price / vm.inventory.units);
@@ -26,7 +27,7 @@
                 vm.inventory = {};
                 $state.go("app.inventory.list");
               }, function(reason) {
-                vm.inventory.quantity = (vm.inventory.quantity -vm.inventory.uquantity) / vm.inventory.units; 
+                vm.inventory.quantity = (vm.inventory.quantity -vm.inventory.uquantity) / vm.inventory.units;
                 console.log('Failed: ' + reason);
               });
 

@@ -1,12 +1,12 @@
 (function () {
     angular.module('app.learn').controller('RegisterController', registerController);
-    function registerController($scope, $state, UserFactory) {
+    function registerController($scope, $state, UserFactory , ConstantFactory) {
         var vm = this;
         vm.submitted = false;
         vm.user = {};
         vm.error = undefined;
         vm.success = undefined;
-        vm.roles = [{Name:"Admin", value:"Admin"},{Name:"Seller", value:"Seller"}];
+        vm.roles = [{Name:ConstantFactory.admin, value:ConstantFactory.admin},{Name:ConstantFactory.seller, value:ConstantFactory.seller}];
 
 
         vm.submitForm = function(isValid) {
