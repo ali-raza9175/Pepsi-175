@@ -32,8 +32,8 @@
     <div class="row form-group">
       <div class="col-md-12">
         <p>Select inventory</p>
-        <ui-select name="inventory" ng-model="vm.sale.selectedInventory" theme="bootstrap"  ng-required="true">
-                  <ui-select-match placeholder="Select or search a item">{{vm.sale.selectedInventory.name}}</ui-select-match>
+        <ui-select name="inventory" ng-model="vm.sale.inventory" theme="bootstrap"  ng-required="true">
+                  <ui-select-match placeholder="Select or search a item">{{vm.sale.inventory.name}}</ui-select-match>
                   <ui-select-choices repeat="item in vm.inventory | filter: $select.search">
                     <div ng-bind-html="item.name | highlight: $select.search"></div>
                   </ui-select-choices>
@@ -48,7 +48,7 @@
         <input type="number" name="quantity" class="form-control" ng-model="vm.sale.quantity"  required>
       </div>
       <div class="col-md-6">
-        <p>Packs </p>
+        <p>Units </p>
         <input type="number" name="uquantity" class="form-control" ng-model="vm.sale.uquantity" required>
       </div>
     </div>

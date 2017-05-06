@@ -9,7 +9,7 @@
       vm.sale.seller = undefined;
       vm.sellers = undefined;
       vm.inventory = undefined;
-      vm.sale.selectedInventory = undefined;
+      vm.sale.inventory = undefined;
       vm.sale.quantity = undefined;
       vm.sale.uquantity = undefined;
       vm.addSale = undefined;
@@ -43,6 +43,16 @@
       }
 
       vm.submitForm = function(){
+          var inventory = vm.sale.inventory;
+          inventory.seller = vm.sale.seller;
+          inventory.quantity = inventory.quantity - (vm.sale.quantity * vm.sale.inventory.units + vm.sale.uquantity) ;
+          inventory.updatedAt = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(0,10);
+
+          if(inventory.quantity < 0)
+          {
+            // error
+          }
+          console.log(inventory);
         console.log(vm.sale);
       }
 
