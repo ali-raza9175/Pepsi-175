@@ -21,14 +21,32 @@ mainApp.factory('SaleFactory', function($q) {
       );
     }
 
-    factory.addSales = function(data){
+    factory.getSellersSales = function(seller){
       return $q(
-        sale.findOne({$and :[{data : data.date } , {"seller._id" , data.seller._id} , {"inventory._id"  , data.inventory._id}]} , function (err, docs){
+        function (resolve , reject)
+        {
+          sale.find({"seller._id" : seller._id} , function (err, docs){
+            if(docs != null && docs != undefined)
+            {
+              resolve (docs);
+            }
+            else {
+              reject ("failed" + err);
+            }
+          });
+        }
+      );
+    }
+
+    factory.addSales = function(data){
+      console.log(data);
+      return $q(function (resolve , reject){
+        sale.findOne({$and :[{saleDate : data.saleDate } , {"seller._id" : data.seller._id} , {"inventory._id"  : data.inventory._id}]} , function (err, docs){
           if(docs == null)
           {
             sale.insert(data , function(err, docs){
               if(err)
-              reject (err);
+              reject (err.message);
               else
               resolve(docs);
 
@@ -39,8 +57,24 @@ mainApp.factory('SaleFactory', function($q) {
           }
 
         });
-      );
+      });
     }
+
+    factory.deleteSale = function(id, deletedBy) {
+
+      return $q(function(resolve, reject) {
+        sale.update({_id : id} , { $set: { isActive: false  , deletedBy : deletedBy }} ,{}, function (err, docs) {
+            if(docs != undefined && docs != null )
+             {
+               resolve (docs);
+             }
+            else{
+              reject(err);
+                 }
+             });
+        });
+    }
+
     return factory;
 
 });

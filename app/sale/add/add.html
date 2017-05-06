@@ -24,6 +24,34 @@
 
 </div>
 
+<div ng-if="vm.sellersSell != undefined">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Seller Name</th>
+        <th>Inventory</th>
+        <th>packs</th>
+        <th>units</th>
+        <th>Sale</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody  ng-repeat="sale in vm.sellersSell track by $index">
+      <tr>
+        <td>{{sale.seller.name}}</td>
+        <td>{{sale.inventory.name}}</td>
+        <td>{{sale.quantity}}</td>
+        <td>{{sale.quantity}} </td>
+        <td> {{sale.sale}} </td>
+        <td> <button type="button" class="btn btn-primary btn-xs" ui-sref = "app.inventory.edit({id: inv._id })">Edit</button>
+
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
 <div class="margin-top-10">
   <button class = "btn btn-primary" ng-click = "vm.addSale = true;"  ng-if = "vm.sale.seller != undefined"> Add Sale</button>
 </div>
@@ -38,7 +66,7 @@
                     <div ng-bind-html="item.name | highlight: $select.search"></div>
                   </ui-select-choices>
         </ui-select>
-
+        <p ng-show="(saleForm.inventory.$dirty || saleForm.$submitted) &&  saleForm.inventory.$error.required" class="help-block">Please select inventory</p>
       </div>
     </div>
 
@@ -46,10 +74,12 @@
       <div class="col-md-6">
         <p>Packs </p>
         <input type="number" name="quantity" class="form-control" ng-model="vm.sale.quantity"  required>
+        <p ng-show="(saleForm.quantity.$dirty || saleForm.$submitted) &&  saleForm.quantity.$error.required" class="help-block">Please select quantity</p>
       </div>
       <div class="col-md-6">
         <p>Units </p>
         <input type="number" name="uquantity" class="form-control" ng-model="vm.sale.uquantity" required>
+        <p ng-show="(saleForm.uquantity.$dirty || saleForm.$submitted) &&  saleForm.uquantity.$error.required" class="help-block">Please select unit</p>
       </div>
     </div>
         <div class="row ">
