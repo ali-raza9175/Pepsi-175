@@ -6,9 +6,9 @@
         vm.user = undefined;
 
         vm.btnClicked = btnClicked;
-        vm.logOut = logOut;
+
         $scope.authenticate = authenticate;
-        vm.logOut = logOut;
+        $scope.logOut = logOut;
 
         activate();
 

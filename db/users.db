@@ -1,3 +1,5 @@
-{"name":"Imran","username":"imran","password":"abc123","phone":"0435","role":"seller","createdAt":"2017-05-06","updatedAt":null,"isActive":true,"_id":"AZVCU8Fr4YK6YWo6"}
-{"name":"Ali Raza","username":"ali.raza","password":"abc123","phone":"03325555175","role":"admin","createdAt":"2017-05-06","updatedAt":null,"isActive":true,"_id":"xuYoxt9RxupYwZmM"}
+{"name":"asim","username":"asim.natt","password":"175175","phone":"0000","role":"admin","createdAt":"2017-05-07","updatedAt":null,"isActive":false,"_id":"C3CcVAOaDWG9Mj2Z","deletedBy":"C3CcVAOaDWG9Mj2Z"}
+{"name":"Ali","username":"ali.raza","password":"abc123","phone":"0890","role":"admin","createdAt":"2017-05-07","updatedAt":null,"isActive":false,"_id":"E3YExTevycgEUAt1","deletedBy":"E3YExTevycgEUAt1"}
+{"name":"ali","username":"aliraza","password":"175175","phone":"00000","role":"seller","createdAt":"2017-05-07","updatedAt":null,"isActive":false,"_id":"rcy3fSBCVmOPNZKZ","deletedBy":"C3CcVAOaDWG9Mj2Z"}
 {"$$indexCreated":{"fieldName":"username","unique":true,"sparse":false}}
+{"name":"Ali","username":"ali.raza","password":"abc123","phone":"0890","role":"admin","createdAt":"2017-05-07","updatedAt":null,"isActive":true,"_id":"E3YExTevycgEUAt1","deletedBy":"E3YExTevycgEUAt1"}
