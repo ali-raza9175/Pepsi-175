@@ -21,11 +21,11 @@ mainApp.factory('SaleFactory', function($q) {
       );
     }
 
-    factory.getSellersSales = function(seller){
+    factory.getSellersSales = function(saleDate , seller){
       return $q(
         function (resolve , reject)
         {
-          sale.find({"seller._id" : seller._id} , function (err, docs){
+          sale.find({$and : [{"seller._id" : seller._id} , {saleDate : saleDate} , {isActive : true}]} , function (err, docs){
             if(docs != null && docs != undefined)
             {
               resolve (docs);
@@ -57,6 +57,21 @@ mainApp.factory('SaleFactory', function($q) {
           }
 
         });
+      });
+    }
+
+    factory.updateSales = function(data){
+      console.log(data);
+      return $q(function (resolve , reject){
+
+            sale.update({'_id' : data._id},{$set : {quantity : data.quantity , sale : data.sale}} , function(err, docs){
+              if(err)
+              reject (err.message);
+              else
+              resolve(docs);
+
+            });
+
       });
     }
 

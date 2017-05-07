@@ -24,7 +24,7 @@
 
 </div>
 
-<div ng-if="vm.sellersSell != undefined">
+<div ng-if="vm.sellersSell != undefined && vm.sellersSell.length > 0">
   <table class="table">
     <thead>
       <tr>
@@ -36,19 +36,33 @@
         <th>Action</th>
       </tr>
     </thead>
-    <tbody  ng-repeat="sale in vm.sellersSell track by $index">
-      <tr>
+    <tbody >
+      <tr ng-repeat-start="sale in vm.sellersSell track by $index">
         <td>{{sale.seller.name}}</td>
         <td>{{sale.inventory.name}}</td>
-        <td>{{sale.quantity}}</td>
-        <td>{{sale.quantity}} </td>
-        <td> {{sale.sale}} </td>
-        <td> <button type="button" class="btn btn-primary btn-xs" ui-sref = "app.inventory.edit({id: inv._id })">Edit</button>
+        <td>{{vm.getQuantity(sale)}}</td>
+        <td>{{vm.getIndQuantity(sale)}} </td>
+        <td>{{sale.sale}} </td>
+        <td> <button type="button" class="btn btn-primary btn-xs" ng-click = "vm.selectInventory(sale)">Edit</button>
 
         </td>
       </tr>
+      <tr ng-repeat-end ng-if="vm.editSale != undefined && vm.editSale._id == sale._id">
 
+        <td>{{vm.editSale.seller.name}}</td>
+        <td>{{vm.editSale.inventory.name}}</td>
+        <td><input type="number" name="quantity" class="form-control" ng-model="vm.editSale.quantity"  required>
+          <p> {{vm.showError(vm.editSale.quantity)}} </p>
+        </td>
+        <td><input type="number" name="uquantity" class="form-control" ng-model="vm.editSale.uquantity"  required>
+            <p> {{vm.showError(vm.editSale.uquantity)}} </p>
+        </td>
+        <td> {{sale.sale}} </td>
+        <td> <button type="button" class="btn btn-default btn-xs" ng-click= "vm.updateSale()">Save</button>
+
+      </tr>
     </tbody>
+
   </table>
 </div>
 
@@ -56,7 +70,7 @@
   <button class = "btn btn-primary" ng-click = "vm.addSale = true;"  ng-if = "vm.sale.seller != undefined"> Add Sale</button>
 </div>
 <div ng-if="vm.addSale != undefined" >
-  <form name="saleForm" ng-submit="vm.submitForm(saleForm.$valid)" novalidate> <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+  <form name="vm.saleForm" ng-submit="vm.submitForm(vm.saleForm.$valid)" novalidate> <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
     <div class="row form-group">
       <div class="col-md-12">
         <p>Select inventory</p>
@@ -66,7 +80,7 @@
                     <div ng-bind-html="item.name | highlight: $select.search"></div>
                   </ui-select-choices>
         </ui-select>
-        <p ng-show="(saleForm.inventory.$dirty || saleForm.$submitted) &&  saleForm.inventory.$error.required" class="help-block">Please select inventory</p>
+        <p ng-show="(vm.saleForm.inventory.$dirty || vm.saleForm.$submitted) &&  vm.saleForm.inventory.$error.required" class="help-block">Please select inventory</p>
       </div>
     </div>
 
@@ -74,12 +88,12 @@
       <div class="col-md-6">
         <p>Packs </p>
         <input type="number" name="quantity" class="form-control" ng-model="vm.sale.quantity"  required>
-        <p ng-show="(saleForm.quantity.$dirty || saleForm.$submitted) &&  saleForm.quantity.$error.required" class="help-block">Please select quantity</p>
+        <p ng-show="(vm.saleForm.quantity.$dirty || vm.saleForm.$submitted) &&  vm.saleForm.quantity.$error.required" class="help-block">Please select quantity</p>
       </div>
       <div class="col-md-6">
         <p>Units </p>
         <input type="number" name="uquantity" class="form-control" ng-model="vm.sale.uquantity" required>
-        <p ng-show="(saleForm.uquantity.$dirty || saleForm.$submitted) &&  saleForm.uquantity.$error.required" class="help-block">Please select unit</p>
+        <p ng-show="(vm.saleForm.uquantity.$dirty || vm.saleForm.$submitted) &&  vm.saleForm.uquantity.$error.required" class="help-block">Please select unit</p>
       </div>
     </div>
         <div class="row ">
