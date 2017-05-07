@@ -5,7 +5,8 @@
       var date = new Date();
       var oldQuantity;
       vm.sale = {};
-
+      vm.error = undefined;
+      vm.success = undefined;
       vm.sale.saleDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(0,10);
       vm.sale.seller = undefined;
       vm.sellers = undefined;
@@ -111,6 +112,8 @@
             delete vm.editSale.uquantity;
             if(inventory.quantity < 0)
             {
+              vm.error = "Stock Error . stock is less than 0";
+              vm.success = undefined;
               // error
             }
             else if(oldQuantity - vm.editSale.quantity != 0){
@@ -122,14 +125,20 @@
                  // success message
                 updateSaleList(vm.editSale);
                  vm.editSale = undefined;
+                 vm.success = "Sale updated succesfully";
+                 vm.error = undefined;
                } , function(updateReason){
                     // delete entered sale in case stock update failds
                     var deleteSale = SaleFactory.deleteSale(response , $rootScope.user);
                     deleteSale.then(function (res) {
                        // show error
+                       vm.success = undefined;
+                       vm.error = "Error in sale update . but sale has been deleted";
                     }, function (reason){
                        // big trouble here
                        // show error
+                       vm.success = undefined;
+                       vm.error = "Big trouble ! Db file has been corrupted";
                     });
 
                 })
