@@ -64,7 +64,7 @@ mainApp.factory('SaleFactory', function($q) {
       console.log(data);
       return $q(function (resolve , reject){
 
-            sale.update({'_id' : data._id},{$set : {quantity : data.quantity , sale : data.sale}} , function(err, docs){
+            sale.update({'_id' : data._id},{$set : {quantity : data.quantity , sale : data.sale , updatedBy : data.updatedBy}} , function(err, docs){
               if(err)
               reject (err.message);
               else

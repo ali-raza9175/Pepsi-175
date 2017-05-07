@@ -97,6 +97,8 @@
             var inventory = response;
 
             vm.editSale.isActive = true;
+            vm.editSale.updatedBy = $rootScope.user;
+            vm.editSale.updatedAt = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(0,10);
             vm.editSale.sale = vm.editSale.quantity * vm.editSale.inventory.price + vm.editSale.uquantity * vm.editSale.inventory.unit_price;
             vm.editSale.quantity = vm.editSale.quantity * vm.editSale.inventory.units + vm.editSale.uquantity;
             if(oldQuantity - vm.editSale.quantity < 0)
@@ -164,7 +166,7 @@
           if(vm.sellersSell[i]._id == inv._id)
           {
             vm.sellersSell[i].quantity = inv.quantity;
-            vm.sellersSell[i].sale = inv._sale;
+            vm.sellersSell[i].sale = inv.sale;
           }
         }
 
@@ -189,6 +191,11 @@
           vm.sale.isActive = true;
           vm.sale.sale = vm.sale.quantity * vm.sale.inventory.price + vm.sale.uquantity * vm.sale.inventory.unit_price;
           vm.sale.quantity = vm.sale.quantity * vm.sale.inventory.units + vm.sale.uquantity;
+          vm.sale.createdBy = $rootScope.user;
+          vm.sale.createdAt = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(0,10);
+          vm.sale.updatedAt = null;
+          vm.sale.deletedBy = null;
+          vm.sale.updatedBy = null;
           inventory.quantity = inventory.quantity - vm.sale.quantity;
           inventory.seller = vm.sale.seller;
           inventory.updatedAt = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(0,10);
