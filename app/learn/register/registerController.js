@@ -11,16 +11,12 @@
 
         vm.submitForm = function(isValid) {
            vm.submitted = true;
-            // check to make sure the form is completely valid
+
             if (isValid) {
-              var date = new Date();
-              vm.user.createdAt =  new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(0,10);
               vm.user.role = vm.user.role.Name;
-              vm.user.updatedAt = null;
               vm.user.isActive = true;
               var promise = UserFactory.saveUser(vm.user);
               promise.then(function(response) {
-                console.log('Success: ' + response);
                 vm.success = "A new user has been added";
                 vm.error - undefined;
               }, function(reason) {

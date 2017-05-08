@@ -23,8 +23,6 @@
            vm.submitted = true;
             // check to make sure the form is completely valid
             if (isValid) {
-              var date = new Date();
-              vm.user.updatedAt=  new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(0,10);
               vm.user.isActive = true;
               console.log(vm.user);
               var promise = UserFactory.updateUser(vm.user);
@@ -33,8 +31,6 @@
                 $scope.registerForm.$setPristine();
                 $scope.registerForm.$setUntouched();
                 vm.user = {};
-                console.log("user update to ");
-                console.log(response);
                 $state.go("app.user.list");
               }, function(response) {
                 console.log("user updation failed" + response);

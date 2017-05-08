@@ -1,5 +1,5 @@
   var mainApp = angular.module('app');
-  mainApp.factory('UserFactory', function($q , ConstantFactory) {
+  mainApp.factory('UserFactory', function($q , ConstantFactory , $rootScope) {
   var factory = {};
   var Datastore = require('nedb');
   var users = new Datastore({ filename: './db/users.db', autoload: true });
@@ -12,7 +12,7 @@
                        if(docs != undefined && docs != null )
                         {
                           users.update({ _id: userInfo._id} , { $set: { "isActive": true , name : userInfo.name , username : userInfo.username,
-                                  role : userInfo.role , phone : userInfo.phone , password : userInfo.password , updatedAt : userInfo.updatedAt
+                                  role : userInfo.role , phone : userInfo.phone , password : userInfo.password , updatedBy  : $rootScope.user , updatedAt: ConstantFactory.getCurrentDate()
                                   }} ,
                                   {upsert: true},
                                   function (err, docs)
@@ -71,7 +71,7 @@
         {
           if(docs.isActive === false)
           {
-          users.update({ username: userInfo.username} , { $set: { isActive: true }} ,{upsert: true}, function (err, docs) {
+          users.update({ username: userInfo.username} , { $set: { isActive: true , password : userInfo.password}} ,{upsert: true}, function (err, docs) {
               if(docs != undefined && docs != null )
                {
                  resolve (docs);
@@ -86,6 +86,15 @@
             }
         }
         else {
+          if($rootScope.user != undefined && $rootScope.user != null)
+          {
+            userInfo.createdBy = $rootScope.user;
+          }
+          userInfo.updatedBy = null;
+          userInfo.updatedAt = null;
+          userInfo.deletedBy = null;
+          userInfo.createdAt = ConstantFactory.getCurrentDate();
+
           users.insert(userInfo, function(err, doc) {
                 if(err )
                 {
@@ -146,10 +155,10 @@
   });
   }
 
-  factory.deleteUser = function(id , deletedBy) {
+  factory.deleteUser = function(id) {
 
   return $q(function(resolve, reject) {
-  users.update({_id : id} , { $set: { isActive: false  , deletedBy : deletedBy}} ,{}, function (err, docs) {
+  users.update({_id : id} , { $set: { isActive: false  , deletedBy : $rootScope.user}} ,{}, function (err, docs) {
      if(docs != undefined && docs != null )
       {
         resolve (docs);
