@@ -1,5 +1,5 @@
   var mainApp = angular.module('app');
-  mainApp.factory('InventoryFactory', function($q) {
+  mainApp.factory('InventoryFactory', function($q , $rootScope , ConstantFactory) {
      var factory = {};
      var Datastore = require('nedb');
      var inventory = new Datastore({ filename: './db/inventory.db', autoload: true });
@@ -14,7 +14,7 @@
                         if(docs != undefined && docs != null )
                          {
                            inventory.update({ _id: data._id} , { $set: { "isActive": true , name : data.name , price : data.price,
-                                        unit_price : data.unit_price , updatedAt : data.updatedAt
+                                        unit_price : data.unit_price , updatedBy  : $rootScope.user , updatedAt: ConstantFactory.getCurrentDate()
                                        }} ,
                                        {upsert: true},
                                        function (err, docs)
@@ -48,7 +48,7 @@
 
                   if(docs.isActive === false)
                   {
-                  inventory.update({ name: docs.name} , { $set: { isActive: true }} ,{upsert: true}, function (err, docs) {
+                  inventory.update({ name: docs.name} , { $set: { isActive: true ,  updatedBy  : $rootScope.user , updatedAt: ConstantFactory.getCurrentDate()}} ,{upsert: true}, function (err, docs) {
                       if(docs != undefined && docs != null )
                        {
                          resolve (docs);
@@ -63,6 +63,16 @@
                     }
                 }
                 else {
+
+                  if($rootScope.user != undefined && $rootScope.user != null)
+                  {
+                    data.createdBy = $rootScope.user;
+                  }
+                  data.updatedBy = null;
+                  data.updatedAt = null;
+                  data.deletedBy = null;
+                  data.createdAt = ConstantFactory.getCurrentDate();
+
                   inventory.insert(data, function(err, doc) {
                         if(err )
                         {
@@ -111,7 +121,7 @@
      factory.deleteInevntory = function(id, deletedBy) {
 
        return $q(function(resolve, reject) {
-         inventory.update({_id : id} , { $set: { isActive: false  , deletedBy : deletedBy }} ,{}, function (err, docs) {
+         inventory.update({_id : id} , { $set: { isActive: false  , deletedBy : $rootScope.user }} ,{}, function (err, docs) {
              if(docs != undefined && docs != null )
               {
                 resolve (docs);
@@ -142,7 +152,7 @@
        return $q(function(resolve, reject) {
 
        inventory.update({ _id: data._id} , { $set: { "isActive": true , quantity : data.quantity ,
-                    updatedBy : data.updatedBy , updatedAt : data.updatedAt
+                    updatedBy : $rootScope.user , updatedAt : ConstantFactory.getCurrentDate()
                    }} ,
                    {upsert: true},
                    function (err, docs)
@@ -163,7 +173,7 @@
        return $q(function(resolve, reject) {
 
        inventory.update({ _id: data._id} , { $set: { "isActive": true , quantity : data.quantity ,
-                    seller : data.seller , updatedAt : data.updatedAt
+                    seller : data.seller  , updatedBy : $rootScope.user, updatedAt : ConstantFactory.getCurrentDate()
                    }} ,
                    {upsert: true},
                    function (err, docs)

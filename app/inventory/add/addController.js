@@ -11,13 +11,9 @@
               var date = new Date();
               var quantity = vm.inventory.quantity;
               var uQuantity = vm.inventory.uquantity;
-              vm.inventory.createdAt=  new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(0,10);
-              vm.inventory.createdBy = $rootScope.user;
               vm.inventory.quantity = parseInt(vm.inventory.quantity);
               vm.inventory.units = parseInt(vm.inventory.units);
               vm.inventory.uquantity = parseInt(vm.inventory.uquantity);
-              vm.inventory.updatedAt = null;
-              vm.inventory.updatedBy = null;
               vm.inventory.seller = null;
               vm.inventory.isActive = true;
               vm.inventory.quantity = vm.inventory.quantity * vm.inventory.units + vm.inventory.uquantity;

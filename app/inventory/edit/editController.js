@@ -19,7 +19,6 @@
         vm.submitForm = function(isValid) {
             if (isValid) {
               var date = new Date();
-              vm.inventory.updatedAt=  new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(0,10);
               vm.inventory.isActive = true;
               vm.inventory.unit_price = Math.floor(vm.inventory.price / vm.inventory.units);
               var promise = InventoryFactory.updateInventory(vm.inventory);
