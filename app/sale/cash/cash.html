@@ -26,8 +26,51 @@
 
 </div>
 
-<div ng-if="vm.sellerscash != undefined && vm.sellerscash.length > 0">
+<div ng-if="vm.sellersSaleCash != undefined && vm.sellersSaleCash.length > 0">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Seller Name</th>
+        <th>Cash</th>
+        <th>Discount</th>
+        <th>Lend money</th>
+        <th>recovery</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr ng-repeat-start="cash in vm.sellersSaleCash track by $index">
+        <td>{{cash.seller.name}}</td>
+        <td>{{cash.cash}}</td>
+        <td>{{cash.discount}}</td>
+        <td>{{cash.lendmoney}} </td>
+        <td>{{cash.recovery}} </td>
+        <td> <button type="button" class="btn btn-primary btn-xs" ng-click = "vm.selectSaleCash(cash)">Edit</button>
 
+        </td>
+      </tr>
+      <tr ng-repeat-end ng-if="vm.editSaleCash != undefined && vm.editSaleCash._id == cash._id">
+        <td>{{cash.seller.name}}</td>
+        <td><input type="number" name="cash" class="form-control" ng-model="vm.editSaleCash.cash"  required>
+          <p> {{vm.showError(vm.editSaleCash.cash)}} </p>
+        </td>
+        <td>
+          <input type="number" name="discount" class="form-control" ng-model="vm.editSaleCash.discount"  required>
+          <p> {{vm.showError(vm.editSaleCash.discount)}} </p>
+        </td>
+        <td>
+          <input type="number" name="lendmonery" class="form-control" ng-model="vm.editSaleCash.lendmoney"  required>
+          <p> {{vm.showError(vm.editSaleCash.lendmoney)}} </p>
+        </td>
+        <td>
+          <input type="number" name="recovery" class="form-control" ng-model="vm.editSaleCash.recovery"  required>
+            <p> {{vm.showError(vm.editSaleCash.recovery)}} </p>
+        </td>
+        <td> <button type="button" class="btn btn-default btn-xs" ng-click= "vm.updateSaleCash()">Save</button>
+      </tr>
+    </tbody>
+
+  </table>
 </div>
 
 <div class="margin-top-10">

@@ -38,20 +38,36 @@ mainApp.factory('CashFactory', function($q , $rootScope, ConstantFactory) {
       );
     }
 
+    factory.updateSaleCash = function(data){
+      console.log(data);
+      return $q(function (resolve , reject){
+
+            cash.update({'_id' : data._id},{$set : {cash : data.cash , discount : data.discount, lendmoney : data.lendmoney , recovery : data.recovery , updatedBy  : $rootScope.user , updatedAt: ConstantFactory.getCurrentDate()}} , function(err, docs){
+              if(err)
+              reject (err.message);
+              else
+              resolve(docs);
+
+            });
+
+      });
+    }
+
     factory.addCash = function(data){
       console.log(data);
       return $q(function (resolve , reject){
         cash.findOne({$and :[{date : data.date } , {"seller._id" : data.seller._id}]} , function (err, docs){
           if(docs == null)
           {
-            if($rootScope.user != undefined && $rootScope.user != null)
-            {
-              data.createdBy = $rootScope.user;
-            }
+            data.isActive = true;
             data.updatedBy = null;
             data.updatedAt = null;
             data.deletedBy = null;
             data.createdAt = ConstantFactory.getCurrentDate();
+            if($rootScope.user != undefined && $rootScope.user != null)
+            {
+              data.createdBy = $rootScope.user;
+            }
 
             cash.insert(data , function(err, docs){
               if(err)

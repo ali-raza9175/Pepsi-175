@@ -78,12 +78,15 @@
 
       function get_seller_sale (){
 
-        var promise = SaleFactory.getSellersSales(vm.sale.saleDate, vm.sale.seller);
-        promise.then(function(response) {
-          vm.sellersSell =  response;
-        }, function(reason) {
-          console.log('Failed: ' + reason);
-        });
+        if(vm.sale.seller )
+        {
+          var promise = SaleFactory.getSellersSales(vm.sale.saleDate, vm.sale.seller);
+          promise.then(function(response) {
+            vm.sellersSell =  response;
+          }, function(reason) {
+            console.log('Failed: ' + reason);
+          });
+        }
 
       }
 
