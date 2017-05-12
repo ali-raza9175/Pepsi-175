@@ -20,6 +20,11 @@ sale.config(function ($stateProvider, $urlRouterProvider){
            templateUrl : './sale/cash/cash.html',
            controller : 'SaleCashController as vm'
          })
+         .state('app.sale.report' , {
+           url: '/report',
+           templateUrl : './sale/report/report.html',
+           controller : 'ReportController as vm'
+         })
 
 });
 

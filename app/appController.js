@@ -15,6 +15,7 @@
         function activate(){
 
         }
+
         function logOut() {
           vm.user = undefined;
           delete $rootScope.user;

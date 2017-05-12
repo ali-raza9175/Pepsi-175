@@ -38,6 +38,25 @@ mainApp.factory('CashFactory', function($q , $rootScope, ConstantFactory) {
       );
     }
 
+
+    factory.getCashByDate = function(date ){
+      return $q(
+        function (resolve , reject)
+        {
+          cash.find({$and : [{date : date} , {isActive : true}]} , function (err, docs){
+            if(docs != null && docs != undefined)
+            {
+              resolve (docs);
+            }
+            else {
+              reject ("failed" + err);
+            }
+          });
+        }
+      );
+    }
+
+
     factory.updateSaleCash = function(data){
       console.log(data);
       return $q(function (resolve , reject){

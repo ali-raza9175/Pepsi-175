@@ -1,0 +1,39 @@
+<ng-include src="'./shared/error.html'"></ng-include>
+<ng-include src="'./shared/success.html'"></ng-include>
+<div class="row">
+
+  <div class="col-md-12">
+      <p>Select Date</p>
+      <datepicker date-format="yyyy-MM-dd" selector="form-control" >
+              <div class="input-group">
+                  <input class="form-control" ng-model="vm.date" ng-change = "" placeholder="Choose a date"/>
+                  <span class="input-group-addon" style="cursor: pointer">
+                  <i class="fa fa-lg fa-calendar"></i>
+                  </span>
+              </div>
+      </datepicker>
+  </div>
+
+
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Cash</th>
+      <th>Discount</th>
+      <th>lent money</th>
+      <th>Recovery</th>
+
+    </tr>
+  </thead>
+  <tbody >
+    <tr>
+      <td>{{vm.cashDetails[0].cash}}</td>
+      <td>{{vm.cashDetails[0].discount}}</td>
+      <td>{{vm.cashDetails[0].lendmoney}}</td>
+      <td>{{vm.cashDetails[0].recovery}}</td>
+    </tr>
+
+  </tbody>
+</table>

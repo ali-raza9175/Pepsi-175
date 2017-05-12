@@ -38,6 +38,24 @@ mainApp.factory('SaleFactory', function($q , $rootScope, ConstantFactory) {
       );
     }
 
+
+    factory.getSalesByDate = function(saleDate){
+      return $q(
+        function (resolve , reject)
+        {
+          sale.find({$and : [{saleDate : saleDate} , {isActive : true}]} , function (err, docs){
+            if(docs != null && docs != undefined)
+            {
+              resolve (docs);
+            }
+            else {
+              reject ("failed" + err);
+            }
+          });
+        }
+      );
+    }
+
     factory.addSales = function(data){
       console.log(data);
       return $q(function (resolve , reject){
@@ -57,8 +75,8 @@ mainApp.factory('SaleFactory', function($q , $rootScope, ConstantFactory) {
               if(err)
               reject (err.message);
               else
-              resolve(docs);
 
+              resolve(docs);
             });
           }
           else {
