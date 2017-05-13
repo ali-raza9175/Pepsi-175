@@ -211,6 +211,7 @@
                vm.sale.uquantity = 0;
                vm.saleForm.$setPristine();
                vm.saleForm.$setUntouched();
+               get_seller_sale();
              } , function(updateReason){
                   // delete entered sale in case stock update failds
                   var deleteSale = SaleFactory.deleteSale(response , $rootScope.user);
