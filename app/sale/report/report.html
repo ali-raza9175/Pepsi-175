@@ -2,11 +2,11 @@
 <ng-include src="'./shared/success.html'"></ng-include>
 <div class="row">
 
-  <div class="col-md-12">
+  <div class="col-md-5">
       <p>Select Date</p>
       <datepicker date-format="yyyy-MM-dd" selector="form-control" >
               <div class="input-group">
-                  <input class="form-control" ng-model="vm.date" ng-change = "" placeholder="Choose a date"/>
+                  <input class="form-control" ng-model="vm.date" ng-change = "vm.selectDate()" placeholder="Choose a date"/>
                   <span class="input-group-addon" style="cursor: pointer">
                   <i class="fa fa-lg fa-calendar"></i>
                   </span>
@@ -20,20 +20,49 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Cash</th>
+      <th>Expected collection</th>
+      <th>Collectio</th>
       <th>Discount</th>
       <th>lent money</th>
       <th>Recovery</th>
+      <th> Difference </th>
 
     </tr>
   </thead>
   <tbody >
     <tr>
-      <td>{{vm.cashDetails[0].cash}}</td>
-      <td>{{vm.cashDetails[0].discount}}</td>
-      <td>{{vm.cashDetails[0].lendmoney}}</td>
-      <td>{{vm.cashDetails[0].recovery}}</td>
+      <td>{{vm.eCollection}} </td>
+      <td> {{vm.collection}}</td>
+      <td>{{vm.discount}}</td>
+      <td>{{vm.lentMoney}}</td>
+      <td>{{vm.recovery}}</td>
+      <td>{{vm.totalCollection - vm.eCollection}}</td>
     </tr>
 
   </tbody>
 </table>
+
+<div ng-if="vm.sellers != undefined && vm.sellers.length > 0">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Seller Name</th>
+        <th>Expected collection</th>
+        <th>Collection</th>
+        <th>Discount</th>
+        <th>Lent Money</th>
+        <th>Recovery</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr ng-repeat="seller in vm.sellers track by $index">
+        <td>{{seller.name}}</td>
+        <td>{{vm.getExpCollectionBySeller(seller._id)}}</td>
+        <td>{{vm.getCollectionBySeller(seller._id)}}</td>
+        <td>{{vm.getDiscountBySeller(seller._id)}} </td>
+        <td>{{vm.getLentMoneyBySeller(seller._id)}} </td>
+        <td>{{vm.getRecoveryBySeller(seller._id)}}  </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
