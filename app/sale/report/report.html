@@ -66,3 +66,30 @@
     </tbody>
   </table>
 </div>
+
+<div ng-if="vm.saleDetails != undefined && vm.saleDetails.length > 0">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Seller Name</th>
+        <th>Inventory</th>
+        <th> Price</th>
+        <th>packs</th>
+        <th>units</th>
+        <th>Sale</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr ng-repeat="sale in vm.saleDetails track by $index">
+        <td>{{sale.seller.name}}</td>
+        <td>{{sale.inventory.name}}</td>
+        <td>{{sale.inventory.price}}</td>
+        <td>{{vm.getQuantity(sale)}}</td>
+        <td>{{vm.getIndQuantity(sale)}} </td>
+        <td>{{sale.sale}} </td>
+      </tr>
+
+    </tbody>
+
+  </table>
+</div>

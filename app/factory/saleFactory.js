@@ -43,7 +43,7 @@ mainApp.factory('SaleFactory', function($q , $rootScope, ConstantFactory) {
       return $q(
         function (resolve , reject)
         {
-          sale.find({$and : [{saleDate : saleDate} , {isActive : true}]} , function (err, docs){
+          sale.find({$and : [{saleDate : saleDate} , {isActive : true}]}).sort({ seller: 1 }).exec( function (err, docs){
             if(docs != null && docs != undefined)
             {
               resolve (docs);

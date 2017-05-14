@@ -159,9 +159,26 @@
         }
         return collection;
       }
-      
+
       vm.selectDate = function () {
           getData();
+      }
+
+      vm.getQuantity = function (sale)
+      {
+        if(sale!= undefined && sale != null && sale != "")
+        {
+          return Math.floor(sale.quantity / sale.inventory.units);
+        }
+        return 0;
+      }
+
+      vm.getIndQuantity = function (sale){
+        if(sale != undefined && sale != null && sale != "")
+        {
+          return sale.quantity % sale.inventory.units;
+        }
+        return 0;
       }
     }
 
