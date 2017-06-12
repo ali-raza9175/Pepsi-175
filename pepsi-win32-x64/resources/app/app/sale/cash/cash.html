@@ -1,0 +1,114 @@
+<ng-include src="'./shared/error.html'"></ng-include>
+<ng-include src="'./shared/success.html'"></ng-include>
+<div class="row">
+
+  <div class="col-md-6">
+      <p>Select Date</p>
+      <datepicker date-format="yyyy-MM-dd" selector="form-control" >
+              <div class="input-group">
+                  <input class="form-control" ng-model="vm.cash.date" ng-change = "vm.selectDate()" placeholder="Choose a date"/>
+                  <span class="input-group-addon" style="cursor: pointer">
+                  <i class="fa fa-lg fa-calendar"></i>
+                  </span>
+              </div>
+      </datepicker>
+  </div>
+
+  <div class="col-md-6">
+      <p>Select Seller</p>
+      <ui-select name="seller" ng-model="vm.cash.seller" theme="bootstrap"  ng-required="true" on-select="vm.selectSeller()">
+                <ui-select-match placeholder="Select or search a seller">{{vm.cash.seller.name}}</ui-select-match>
+                <ui-select-choices repeat="item in vm.sellers | filter: $select.search">
+                  <div ng-bind-html="item.name | highlight: $select.search"></div>
+                </ui-select-choices>
+      </ui-select>
+  </div>
+
+</div>
+
+<div ng-if="vm.sellersSaleCash != undefined && vm.sellersSaleCash.length > 0">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Seller Name</th>
+        <th>Cash</th>
+        <th>Discount</th>
+        <th>Lend money</th>
+        <th>recovery</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr ng-repeat-start="cash in vm.sellersSaleCash track by $index">
+        <td>{{cash.seller.name}}</td>
+        <td>{{cash.cash}}</td>
+        <td>{{cash.discount}}</td>
+        <td>{{cash.lendmoney}} </td>
+        <td>{{cash.recovery}} </td>
+        <td> <button type="button" class="btn btn-primary btn-xs" ng-click = "vm.selectSaleCash(cash)">Edit</button>
+
+        </td>
+      </tr>
+      <tr ng-repeat-end ng-if="vm.editSaleCash != undefined && vm.editSaleCash._id == cash._id">
+        <td>{{cash.seller.name}}</td>
+        <td><input type="number" name="cash" class="form-control" ng-model="vm.editSaleCash.cash"  required>
+          <p> {{vm.showError(vm.editSaleCash.cash)}} </p>
+        </td>
+        <td>
+          <input type="number" name="discount" class="form-control" ng-model="vm.editSaleCash.discount"  required>
+          <p> {{vm.showError(vm.editSaleCash.discount)}} </p>
+        </td>
+        <td>
+          <input type="number" name="lendmonery" class="form-control" ng-model="vm.editSaleCash.lendmoney"  required>
+          <p> {{vm.showError(vm.editSaleCash.lendmoney)}} </p>
+        </td>
+        <td>
+          <input type="number" name="recovery" class="form-control" ng-model="vm.editSaleCash.recovery"  required>
+            <p> {{vm.showError(vm.editSaleCash.recovery)}} </p>
+        </td>
+        <td> <button type="button" class="btn btn-default btn-xs" ng-click= "vm.updateSaleCash()">Save</button>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+
+<div class="margin-top-10">
+  <button class = "btn btn-primary" ng-click = "vm.addCash = true;"  ng-if = "vm.cash.seller != undefined">Add Cash</button>
+</div>
+<div ng-if="vm.addCash != undefined" >
+  <form name="vm.cashForm" ng-submit="vm.AddCashForm(vm.cashForm.$valid)" novalidate> <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+
+    <div class="row form-group">
+      <div class="col-md-6">
+        <p>Sale </p>
+        <input type="number" name="cash" class="form-control" ng-model="vm.cash.cash"  required>
+        <p ng-show="(vm.cashForm.cash.$dirty || vm.cashForm.$submitted) &&  vm.cashForm.cash.$error.required" class="help-block">Please Add Cash</p>
+      </div>
+      <div class="col-md-6">
+        <p>Discount </p>
+        <input type="number" name="discount" class="form-control" ng-model="vm.cash.discount" required>
+        <p ng-show="(vm.cashForm.discount.$dirty || vm.cashForm.$submitted) &&  vm.cashForm.discount.$error.required" class="help-block">Please Add discount</p>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-md-6">
+        <p>Lend money </p>
+        <input type="number" name="lendmoney" class="form-control" ng-model="vm.cash.lendmoney"  required>
+        <p ng-show="(vm.cashForm.lendmoney.$dirty || vm.cashForm.$submitted) &&  vm.cashForm.lendmoney.$error.required" class="help-block">Please add lent money</p>
+      </div>
+      <div class="col-md-6">
+        <p>Recovery </p>
+        <input type="number" name="recovery" class="form-control" ng-model="vm.cash.recovery" required>
+        <p ng-show="(vm.cashForm.recovery.$dirty || vm.cashForm.$submitted) &&  vm.cashForm.recovery.$error.required" class="help-block">Please add recovery</p>
+      </div>
+    </div>
+        <div class="row ">
+          <div class="col-md-12">
+          <!-- SUBMIT BUTTON -->
+          <button type="submit"  class="btn btn-primary button">Add</button>
+        </div>
+      </div>
+  </form>
+</div>

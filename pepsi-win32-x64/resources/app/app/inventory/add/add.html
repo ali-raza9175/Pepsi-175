@@ -1,0 +1,26 @@
+ <div class="col-sm-8 col-sm-offset-2">
+
+    <form name="inventoryForm" ng-submit="vm.submitForm(inventoryForm.$valid)" novalidate> <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+
+      <ng-include src="'./inventory/shared/_form.html'"></ng-include>
+
+
+      <div class="form-group">
+          <label>Pack quantity</label>
+          <input type="text" name="quantity" ng-pattern="/^[0-9]*$/" class="form-control" ng-model="vm.inventory.quantity" required>
+          <p ng-show="inventoryForm.quantity.$error.pattern">Not a valid number!</p>
+          <p ng-show="(inventoryForm.sprice.$dirty || inventoryForm.$submitted) && inventoryForm.sprice.$error.required" class="help-block">single piece is required.</p>
+      </div>
+
+      <div class="form-group">
+          <label>Unit Quantity</label>
+          <input type="text" name="uqiantity" ng-pattern="/^[0-9]*$/" class="form-control" ng-model="vm.inventory.uquantity" required>
+          <p ng-show="inventoryForm.uqiantity.$error.pattern">Not a valid number!</p>
+          <p ng-show="(inventoryForm.sprice.$dirty || inventoryForm.$submitted) && inventoryForm.sprice.$error.required" class="help-block">single piece is required.</p>
+      </div>
+      
+        <!-- SUBMIT BUTTON -->
+        <button type="submit"  class="btn btn-primary button">Add</button>
+
+    </form>
+</div><!-- col-sm-8 -->

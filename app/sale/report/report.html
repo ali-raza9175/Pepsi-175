@@ -23,7 +23,7 @@
       <th>Expected collection</th>
       <th>Collectio</th>
       <th>Discount</th>
-      <th>lent money</th>
+      <th>Credit</th>
       <th>Recovery</th>
       <th> Difference </th>
 
@@ -50,8 +50,9 @@
         <th>Expected collection</th>
         <th>Collection</th>
         <th>Discount</th>
-        <th>Lent Money</th>
+        <th>Credit</th>
         <th>Recovery</th>
+        <th>Difference </th>
       </tr>
     </thead>
     <tbody >
@@ -62,6 +63,7 @@
         <td>{{vm.getDiscountBySeller(seller._id)}} </td>
         <td>{{vm.getLentMoneyBySeller(seller._id)}} </td>
         <td>{{vm.getRecoveryBySeller(seller._id)}}  </td>
+        <td>{{ vm.getCollectionBySeller(seller._id) + vm.getDiscountBySeller(seller._id) + vm.getLentMoneyBySeller(seller._id) - vm.getExpCollectionBySeller(seller._id)}} </td>
       </tr>
     </tbody>
   </table>

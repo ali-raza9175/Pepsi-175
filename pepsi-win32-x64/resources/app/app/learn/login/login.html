@@ -1,0 +1,30 @@
+<!--      <datepicker date-format="yyyy-MM-dd" selector="form-control">
+        <div class="input-group">
+            <input class="form-control" ng-model="vm.user.date" placeholder="Choose a date"/>
+            <span class="input-group-addon" style="cursor: pointer">
+            <i class="fa fa-lg fa-calendar"></i>
+            </span>
+        </div>
+    </datepicker> -->
+<ng-include src="'./shared/error.html'"></ng-include>
+<div class="col-sm-4 col-sm-offset-4">
+    <form name="loginForm" ng-submit="vm.submitForm(loginForm.$valid)" novalidate> <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+        <!-- USERNAME -->
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" name="username" class="form-control" ng-model="vm.user.username" ng-minlength="3"  required>
+            <p ng-show=" (loginForm.username.$dirty || vm.submitted) &&  loginForm.username.$error.required" class="help-block">Username is required.</p>
+            <p ng-show=" (loginForm.username.$dirty || vm.submitted) && loginForm.username.$error.minlength " class="help-block">Username is too short.</p>
+        </div>
+
+        <div class="form-group">
+            <label>password</label>
+            <input type="password" name="password" class="form-control" ng-model="vm.user.password" ng-minlength="3" required>
+            <p ng-show="(loginForm.password.$dirty || vm.submitted) &&  loginForm.password.$error.required" class="help-block">Password is required.</p>
+            <p ng-show="(loginForm.password.$dirty || vm.submitted) && loginForm.password.$error.minlength" class="help-block">Password is too short.</p>
+        </div>
+        <!-- SUBMIT BUTTON -->
+        <button type="submit" class="btn btn-primary button">Login</button>
+        <button ng-if="vm.forgotPwd" ui-sref= "app.learn.forgotpwd" class="btn btn-danger btn-xs">Forgot password</button>
+    </form>
+</div><!-- col-sm-8 -->

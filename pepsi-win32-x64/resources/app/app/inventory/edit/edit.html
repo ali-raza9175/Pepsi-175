@@ -1,0 +1,11 @@
+<div class="col-sm-8 col-sm-offset-2">
+
+   <form name="inventoryForm" ng-submit="vm.submitForm(inventoryForm.$valid)" novalidate> <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+
+     <ng-include src="'./inventory/shared/_form.html'"></ng-include>
+
+       <!-- SUBMIT BUTTON -->
+       <button type="submit"  class="btn btn-primary button">Update</button>
+
+   </form>
+</div><!-- col-sm-8 -->

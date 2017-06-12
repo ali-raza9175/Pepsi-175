@@ -31,6 +31,10 @@
           get_seller_cash();
       }
 
+      vm.selectDate = function () {
+        get_seller_cash();
+      }
+
 
       function get_seller_cash (){
 
@@ -105,7 +109,7 @@
             {
               vm.sellersSaleCash[i].cash = saleCash.cash;
               vm.sellersSaleCash[i].discount = saleCash.discount;
-              vm.sellersSaleCash[i].recover = saleCash.recovery;
+              vm.sellersSaleCash[i].recovery = saleCash.recovery;
               vm.sellersSaleCash[i].lendmoney = saleCash.lendmoney;
             }
           }
