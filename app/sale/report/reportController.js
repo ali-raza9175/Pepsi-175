@@ -44,6 +44,8 @@
       var promise = CashFactory.getCashByDate(vm.date);
       promise.then(function (response) {
         vm.cashDetails = response;
+        console.log("cash details");
+        console.log(vm.cashDetails);
         getTotalCollection();
       }, function (reason) {
         console.log('Failed: ' + reason);
@@ -89,6 +91,9 @@
       for (var i = 0; i < vm.saleDetails.length; i++) {
         vm.eCollection += vm.saleDetails[i].sale;
       }
+
+      console.log("Expected collection");
+      console.log(vm.eCollection);
     }
 
     vm.getExpCollectionBySeller = function (id) {

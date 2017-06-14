@@ -201,12 +201,14 @@
           vm.sale.quantity = vm.sale.quantity * vm.sale.inventory.units + vm.sale.uquantity;
           inventory.quantity = inventory.quantity - vm.sale.quantity;
           inventory.seller = vm.sale.seller;
-          delete vm.sale.uquantity;
+         // delete vm.sale.uquantity;
           delete vm.sale.seller.$$hashKey;
           delete vm.sale.inventory.$$hashKey;
           if(inventory.quantity < 0)
           {
             // error
+             vm.error = "Please verify your stock!";
+            vm.success = undefined;
           }
           else {
             console.log(vm.sale);
